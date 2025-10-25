@@ -1,80 +1,276 @@
-/* STYLE: compact, elegant "Tarjeta moderna con degradado (morada)" */
-/* Tipografía y reset */
-:root{
-  --bg-1:#1b0b2b;
-  --bg-2:#5a2aa8;
-  --card:#ffffff;
-  --muted:#6b7280;
-  --accent:#7b3be0;
-  --danger:#dc2626;
-  --success:#059669;
-  --radius:12px;
-  --shadow: 0 20px 60px rgba(6,6,16,0.55);
+/* ------------------------------------------------------
+   1) DESIGN SYSTEM — VARIABLES
+------------------------------------------------------ */
+:root {
+  /* Base brand (una sola fuente de color para todo el tema) */
+  --brand: 265 60% 50%;
+
+  /* Paleta derivada */
+  --bg: 265 54% 10%;
+  --bg-dark: 265 54% 6%;
+  --bg-soft: 265 54% 16%;
+
+  --accent: var(--brand);
+  --accent-light: 265 60% 70%;
+  --accent-dark: 265 60% 35%;
+
+  --card-bg: 0 0% 100%;
+  --text: 0 0% 96%;
+  --text-muted: 0 0% 78%;
+
+  --danger: 0 72% 52%;
+  --success: 161 91% 37%;
+
+  /* UI */
+  --radius: 12px;
+  --shadow: 0 20px 60px rgba(6, 6, 16, 0.55);
 }
-*{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial;background:linear-gradient(180deg,var(--bg-1),var(--bg-2));-webkit-font-smoothing:antialiased}
-.wrap{width:100%;max-width:980px;margin:28px auto;padding:20px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:22px}
 
-/* Card common */
-.card{background:var(--card);border-radius:12px;padding:18px;box-shadow:var(--shadow);width:100%;max-width:760px}
-.card.wide{max-width:760px;padding:22px}
+/* ------------------------------------------------------
+   2) RESET & BASE
+------------------------------------------------------ */
+* { box-sizing: border-box; }
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial;
+  background: linear-gradient(180deg,
+    hsl(var(--bg) / 1),
+    hsl(var(--accent-dark) / 1)
+  );
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  width: 100%;
+  max-width: 980px;
+  margin: 28px auto;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 22px;
+}
 
-/* PIN card */
-.pin-card{max-width:420px;text-align:center;padding:26px}
-.brand-row{display:flex;align-items:center;gap:12px;margin-bottom:6px}
-.logo{width:50px;height:50px;border-radius:10px;background:linear-gradient(180deg,var(--accent),#9b6bff);display:grid;place-items:center;color:white;font-weight:700}
-.brand-name{color:white;font-weight:700}
-.brand-sub{font-size:12px;color:rgba(255,255,255,0.9)}
+/* ------------------------------------------------------
+   3) LAYOUT / CARDS / COMPONENTES BASE
+------------------------------------------------------ */
+.card {
+  background: hsl(var(--card-bg));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  width: 100%;
+  max-width: 760px;
+}
+.card.wide { padding: 22px; }
 
-/* typography */
-.headline{margin:6px 0 0;font-size:20px;color:white}
-.muted{color:rgba(255,255,255,0.85);font-size:13px;margin:0}
-.input{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.12);margin-top:12px;background:rgba(255,255,255,0.98);font-size:15px}
-.controls{display:flex;gap:12px;margin-top:12px}
-.btn{border:0;border-radius:10px;padding:10px 12px;font-weight:600;cursor:pointer}
-.btn.primary{background:linear-gradient(90deg,var(--accent),#9b6bff);color:white;box-shadow:0 10px 30px rgba(123,59,224,0.16)}
-.btn.primary:hover{transform:translateY(-3px)}
-.btn.ghost{background:transparent;border:1px solid rgba(11,17,40,0.06);color:#0b1220}
+.pin-card {
+  max-width: 420px;
+  text-align: center;
+  padding: 26px;
+}
 
-/* menu */
-.menu-card{background:linear-gradient(180deg,rgba(255,255,255,0.98),#fff);border-radius:14px;padding:18px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:16px}
-.card-btn{background:linear-gradient(180deg,rgba(255,255,255,0.98),#fff);padding:12px;border-radius:12px;border:1px solid rgba(11,17,40,0.04);cursor:pointer;transition:transform .12s,box-shadow .12s;text-align:left}
-.card-btn:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(8,6,20,0.08)}
-.card-btn:disabled{opacity:0.45;cursor:not-allowed;transform:none;box-shadow:none}
-.card-btn-title{font-weight:700}
-.card-btn-sub{font-size:13px;color:var(--muted);margin-top:6px}
+/* Brand header */
+.brand-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  background: linear-gradient(180deg,
+    hsl(var(--accent)),
+    hsl(var(--accent-light))
+  );
+  display: grid;
+  place-items: center;
+  color: white;
+  font-weight: 700;
+}
 
-/* overlay & modal */
-.overlay{position:fixed;inset:0;display:grid;place-items:center;padding:18px;z-index:90;background:linear-gradient(180deg,rgba(2,6,23,0.55),rgba(12,6,28,0.75))}
-.modal{background:#fff;border-radius:12px;box-shadow:0 30px 90px rgba(2,6,23,0.6);width:100%;max-width:760px;overflow:hidden}
-.modal-header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid rgba(11,17,40,0.04)}
-.modal-body{padding:14px 16px;display:flex;flex-direction:column;gap:12px;max-height:60vh;overflow:auto}
-.modal-actions{display:flex;gap:10px;justify-content:flex-end;padding:12px 16px;border-top:1px solid rgba(11,17,40,0.04)}
-.icon-btn{background:transparent;border:0;font-size:24px;cursor:pointer;color:var(--muted)}
+/* ------------------------------------------------------
+   4) TYPO, INPUTS, BOTONES
+------------------------------------------------------ */
+.headline { margin: 6px 0 0; font-size: 20px; color: hsl(var(--text)); }
+.muted { color: hsl(var(--text-muted)); font-size: 13px; margin: 0; }
 
-/* QUESTION (compact) - ESTILO B (elegante, pequeño) */
-.questions-area{display:flex;flex-direction:column;gap:10px}
-.question{display:flex;flex-direction:column;gap:6px;padding:10px;border-radius:10px;border:1px solid rgba(11,17,40,0.04);background:linear-gradient(180deg,rgba(11,43,82,0.02),rgba(255,255,255,0.01))}
-.q-title{margin:0;font-weight:600;font-size:14px;color:#0b1220}
-.options{display:flex;flex-direction:column;gap:6px;margin-top:6px}
-.option{display:flex;align-items:center;gap:10px;padding:6px;border-radius:8px;cursor:pointer;font-size:13px}
-.option input{transform:scale(1);accent-color:var(--accent)}
-.option:hover{background:rgba(11,43,82,0.03)}
-.question.incorrect{outline:2px solid rgba(220,38,38,0.12);background:linear-gradient(90deg, rgba(220,38,38,0.03), rgba(255,255,255,0.01))}
-.q-msg{color:var(--danger);font-size:13px;font-weight:700;margin-top:6px}
+.input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid hsl(var(--text-muted) / 0.15);
+  margin-top: 12px;
+  background: hsl(0 0% 100% / 0.98);
+  font-size: 15px;
+}
 
-/* feedback */
-.modal-feedback{font-weight:700;margin-top:6px}
-.modal-feedback.error{color:var(--danger)}
-.modal-feedback.ok{color:var(--success)}
+.controls { display: flex; gap: 12px; margin-top: 12px; }
+.btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn.primary {
+  background: linear-gradient(90deg,
+    hsl(var(--accent)),
+    hsl(var(--accent-light))
+  );
+  color: white;
+  box-shadow: 0 10px 30px hsl(var(--accent) / 0.16);
+  transition: transform .12s;
+}
+.btn.primary:hover { transform: translateY(-3px); }
+.btn.ghost {
+  background: transparent;
+  border: 1px solid hsl(var(--bg-dark) / 0.12);
+  color: hsl(var(--bg-dark));
+}
 
-/* utilities */
-.hidden{display:none}
-.center{text-align:center}
-@media (max-width:720px){
-  .card{padding:14px}
-  .modal{max-width:96%}
-  .questions-area{gap:8px}
-  .question{padding:8px}
+/* ------------------------------------------------------
+   5) MENÚ Y GRID
+------------------------------------------------------ */
+.menu-card {
+  background: hsl(0 0% 100% / 0.98);
+  border-radius: 14px;
+  padding: 18px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+.card-btn {
+  background: hsl(0 0% 100% / 0.98);
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid hsl(var(--bg-dark) / 0.05);
+  cursor: pointer;
+  transition: transform .12s, box-shadow .12s;
+  text-align: left;
+}
+.card-btn:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(8, 6, 20, 0.08);
+}
+.card-btn:disabled { opacity: .45; cursor: not-allowed; }
+.card-btn-title { font-weight: 700; }
+.card-btn-sub { font-size: 13px; color: hsl(var(--text-muted)); margin-top: 6px; }
+
+/* ------------------------------------------------------
+   6) MODAL
+------------------------------------------------------ */
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  z-index: 90;
+  background: linear-gradient(180deg,
+    hsl(var(--bg) / 0.55),
+    hsl(var(--bg-dark) / 0.9)
+  );
+}
+.modal {
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: 0 30px 90px rgba(2, 6, 23, 0.6);
+  width: 100%;
+  max-width: 760px;
+  overflow: hidden;
+}
+.modal-header,
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid hsl(var(--bg-dark) / 0.05);
+}
+.modal-actions {
+  border-bottom: 0;
+  border-top: 1px solid hsl(var(--bg-dark) / 0.05);
+  justify-content: flex-end;
+  gap: 10px;
+}
+.modal-body {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 60vh;
+  overflow: auto;
+}
+.icon-btn {
+  background: transparent;
+  border: 0;
+  font-size: 24px;
+  cursor: pointer;
+  color: hsl(var(--text-muted));
+}
+
+/* ------------------------------------------------------
+   7) QUESTIONS
+------------------------------------------------------ */
+.questions-area { display: flex; flex-direction: column; gap: 10px; }
+.question {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px;
+  border-radius: 10px;
+  background: hsl(0 0% 100% / 0.9);
+  border: 1px solid hsl(var(--bg-dark) / 0.05);
+}
+.q-title {
+  margin: 0;
+  font-weight: 600;
+  font-size: 14px;
+  color: hsl(var(--bg-dark));
+}
+.options { display: flex; flex-direction: column; gap: 6px; margin-top: 6px; }
+.option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+}
+.option:hover { background: hsl(var(--accent) / 0.03); }
+.option input { transform: scale(1); accent-color: hsl(var(--accent)); }
+
+.question.incorrect {
+  outline: 2px solid hsl(var(--danger) / 0.4);
+  background: hsl(var(--danger) / 0.05);
+}
+.q-msg {
+  color: hsl(var(--danger));
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: 6px;
+}
+
+/* ------------------------------------------------------
+   8) UTILITIES
+------------------------------------------------------ */
+.hidden { display: none; }
+.center { text-align: center; }
+
+/* ------------------------------------------------------
+   9) RESPONSIVE
+------------------------------------------------------ */
+@media (max-width: 720px) {
+  .card { padding: 14px; }
+  .modal { max-width: 96%; }
+  .questions-area { gap: 8px; }
+  .question { padding: 8px; }
 }
