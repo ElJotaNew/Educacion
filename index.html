@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Campus — Evaluación</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- PIN SCREEN -->
+    <main id="pin-screen" class="card pin-card" aria-labelledby="pin-title">
+      <div class="brand-row">
+        <div class="logo">CV</div>
+        <div class="brand-text"><div class="brand-name">Campus Virtual</div><div class="brand-sub">Plataforma de evaluación</div></div>
+      </div>
+
+      <h2 id="pin-title" class="headline">Acceso seguro</h2>
+      <p class="muted">Introduce el PIN para continuar</p>
+
+      <input id="pin-input" class="input" type="password" placeholder="PIN" inputmode="numeric" aria-label="PIN" />
+      <div class="controls">
+        <button id="pin-btn" class="btn primary">Entrar</button>
+      </div>
+      <p id="pin-error" class="feedback error" aria-live="polite"></p>
+    </main>
+
+    <!-- MENU -->
+    <section id="menu" class="hidden center">
+      <div class="menu-card card wide">
+        <div class="menu-header">
+          <div>
+            <h2 style="margin:0">Selecciona la materia</h2>
+            <p class="muted" style="margin:6px 0 0">Una oportunidad por materia — responde el cuestionario</p>
+          </div>
+        </div>
+
+        <div class="grid" role="list">
+          <button id="btn-mate" class="card-btn" data-sub="mate">Matemáticas</button>
+          <button id="btn-fisica" class="card-btn" data-sub="fisica">Física</button>
+          <button id="btn-quimica" class="card-btn" data-sub="quimica">Química</button>
+          <button id="btn-lenguaje" class="card-btn" data-sub="lenguaje">Lenguaje</button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+ 
+
+  <!-- OVERLAY / MODAL -->
+  <div id="overlay" class="overlay hidden" aria-hidden="true" onclick="tryCloseModal(event)">
+    <div id="modal" class="modal" role="dialog" aria-modal="true" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3 id="modal-title">Materia</h3>
+        <div><button class="icon-btn" id="close-modal" aria-label="Cerrar">&times;</button></div>
+      </div>
+
+      <form id="modal-form" class="modal-body" onsubmit="return submitSubject(event)">
+        <div id="questions-area" class="questions-area"><!-- preguntas --></div>
+
+        <div class="modal-actions">
+          <button type="submit" class="btn primary">Enviar</button>
+          <button type="button" class="btn ghost" id="btn-cancel">Cancelar</button>
+        </div>
+
+        <p id="modal-feedback" class="modal-feedback" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="questions.js"></script>
+</body>
+</html>
