@@ -215,7 +215,7 @@ function submitSubject(e) {
     modalFeedback.textContent = `Preguntas incorrectas: ${wrongIndices.join(", ")}`;
   }
 
-  // leave modal open for review; user closes manually
+  // leave modals open for review; user closes manually
   return false;
 }
 
